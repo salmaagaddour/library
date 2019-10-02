@@ -57,8 +57,8 @@ saveLoan(addLoanForm: NgForm){
     if(!addLoanForm.valid){
         window.alert('Error in the form');
     }
-    let book = this.http.get<Book>('library/rest/book/api/searchByIsbn?isbn='+this.simpleLoan.isbn);
-    let customer = this.http.get<Customer>('library/rest/customer/api/searchByEmail?email='+this.simpleLoan.email);
+    let book = this.http.get<Book>('/library/rest/book/api/searchByIsbn?isbn='+this.simpleLoan.isbn);
+    let customer = this.http.get<Customer>('/library/rest/customer/api/searchByEmail?email='+this.simpleLoan.email);
     forkJoin([book, customer]).subscribe(results => {
       if((results[0] && results[0].id) && (results[1] && results[1].id)){
         this.simpleLoan.bookId = results[0].id;
@@ -115,8 +115,8 @@ saveNewLoan(simpleLoan: SimpleLoan){
     this.spinner.show();
     this.displayMessageModal = false;
     let simpleLoan = new SimpleLoan();
-    let book = this.http.get<Book>('library/rest/book/api/searchByIsbn?isbn='+loan.bookDTO.isbn);
-    let customer = this.http.get<Customer>('library/rest/customer/api/searchByEmail?email='+loan.customerDTO.email);
+    let book = this.http.get<Book>('/library/rest/book/api/searchByIsbn?isbn='+loan.bookDTO.isbn);
+    let customer = this.http.get<Customer>('/library/rest/customer/api/searchByEmail?email='+loan.customerDTO.email);
     forkJoin([book, customer]).subscribe(results => {
       if((results[0] && results[0].id) && (results[1] && results[1].id)){
         simpleLoan.bookId = results[0].id;

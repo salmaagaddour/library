@@ -25,7 +25,7 @@ export class LoanService {
        * @param loan
        */
       closeLoan(simpleLoan: SimpleLoan): Observable<Boolean>{
-           return this.http.post<Boolean>('/library/rest/loan/api/closeLoan/', simpleLoan);
+           return this.http.post<Boolean>('/library/rest/loan/api/closeLoan', simpleLoan);
        }
      
      /**
